@@ -4,16 +4,18 @@ import Disclaimer from "../components/Disclaimer.astro";
 import MitigationTable from "../components/MitigationTable.tsx";
 
 const sid = Astro.url.searchParams.get('sid') ?? '';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 <BaseLayout title="Mitigations — AI Pre-Mortem Engine">
-<h1 class="mb-4 font-serif text-2xl font-bold text-boardroom">Mitigation action plan {sid ? `#${sid}` : ''}</h1>
+<h1 class="page-title">Mitigation action plan {sid ? `#${sid}` : ''}</h1>
 <Disclaimer />
 {!sid && (
-  <p class="rounded border border-riskamber/60 bg-amber-50 p-3 text-sm text-boardroom">No session id provided. Plan mitigations from <a class="underline" href="/history">History</a> → Scenarios first.</p>
+  <p class="rounded border border-riskamber/60 bg-amber-50 p-3 text-sm text-boardroom">No session id provided. Plan mitigations from <a class="underline" href={`${base}/history`}>History</a> → Scenarios first.</p>
 )}
 {sid && (
   <>
-    <p class="mb-3 text-xs text-charcoal/70"><a href={`/scenarios?sid=${sid}`} class="text-riskblue underline">Scenarios</a> · <a href={`/report?sid=${sid}`} class="text-riskblue underline">Report</a></p>
+    <p class="mb-3 text-xs text-charcoal/70"><a href={`${base}/scenarios?sid=${sid}`} class="text-riskblue underline">Scenarios</a> · <a href={`${base}/report?sid=${sid}`} class="text-riskblue underline">Report</a></p>
     <div class="rounded border border-boardroom/20 bg-slate-50 p-4">
       <MitigationTable sid={sid} client:visible />
     </div>

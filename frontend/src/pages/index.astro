@@ -1,44 +1,125 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Disclaimer from "../components/Disclaimer.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
-<BaseLayout title="AI Pre-Mortem Engine — imagine failure before launch">
-<h1 class="font-serif text-3xl font-bold text-boardroom">AI Pre-Mortem Engine</h1>
-<p class="mt-4 max-w-2xl text-sm text-charcoal">Describe a project before launch. Get 10 plausible failure scenarios from a "future investigator" — each with narrative, probability / severity, a real historical precedent, and early-warning signals — plus a probability × severity risk matrix, per-scenario mitigation plans, and a shareable markdown report.</p>
-<div class="mt-6 flex flex-wrap gap-3 text-sm">
-  <a href="/submit" class="rounded bg-boardroom px-4 py-1.5 font-bold text-white">Run a pre-mortem</a>
-  <a href="/history" class="rounded border border-boardroom/40 px-4 py-1.5">History</a>
-</div>
-<div class="mt-8 rounded border border-boardroom/20 bg-white p-4">
-  <h2 class="text-sm font-bold text-boardroom">Sample risk matrix — probability × severity</h2>
-  <p class="mt-1 text-xs text-charcoal/70">Severity on the x-axis (medium → high → critical), probability on the y-axis (low → medium → high). Category colours match the Scenarios page.</p>
-  <div class="mt-3 grid grid-cols-4 gap-1 text-center text-xs">
-    <div></div>
-    <div class="font-bold text-boardroom">medium</div>
-    <div class="font-bold text-boardroom">high</div>
-    <div class="font-bold text-riskred">critical</div>
-    <div class="font-bold text-boardroom">high</div>
-    <div class="rounded bg-amber-100 p-2">team ×2</div>
-    <div class="rounded bg-red-100 p-2 font-bold">technical</div>
-    <div class="rounded bg-red-200 p-2 font-bold">dependency</div>
-    <div class="font-bold text-boardroom">medium</div>
-    <div class="rounded bg-slate-100 p-2">market</div>
-    <div class="rounded bg-amber-100 p-2">execution</div>
-    <div class="rounded bg-red-100 p-2">unknown</div>
-    <div class="font-bold text-boardroom">low</div>
-    <div class="rounded bg-slate-100 p-2">market</div>
-    <div class="rounded bg-slate-100 p-2">execution</div>
-    <div class="rounded bg-amber-100 p-2">technical</div>
+<BaseLayout title="AI Pre-Mortem Engine — imagine failure before launch" description="Describe a project before launch. Get 10 plausible failure scenarios — each with narrative, probability/severity, a historical precedent and early-warning signals.">
+<section class="hero">
+  <span class="hero-badge">A “future investigator” looks back</span>
+  <h1 class="display-1">Imagine the failure<br/><span class="grad-text">before it happens.</span></h1>
+  <p class="lead">Describe a project before launch. Get 10 plausible failure scenarios from a “future investigator” — each with narrative, probability / severity, a real historical precedent, and early-warning signals — plus a risk matrix, mitigation plans, and a shareable report.</p>
+  <div class="hero-ctas">
+<a href={`${base}/submit`} class="btn btn-accent btn-lg">Run a pre-mortem</a>
+<a href={`${base}/history`} class="btn btn-ghost btn-lg">See past pre-mortems</a>
   </div>
-  <p class="mt-2 text-xs text-charcoal/70">Live per-session matrix renders on the Scenarios page after you submit.</p>
+  <div class="hero-meta">
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Probability × severity matrix</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Historical precedents per scenario</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>CSV + markdown export</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid-3">
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">10 failure scenarios</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Written as a report from the future — what went wrong, and why.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Risk matrix</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Every scenario plotted probability × severity, coloured by category.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Real precedents</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Each failure is anchored to something that actually happened.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/><path d="M12 12 19 5"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Early-warning signals</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">The observable signs that the failure is starting — before it lands.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Mitigation plans</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Pick scenarios and plan countermeasures per failure mode.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Shareable report</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Export the action plan as CSV and the full pre-mortem as markdown.</p>
+</article>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head">
+    <p class="eyebrow">Showcase</p>
+    <h2 class="section-title">The risk matrix, at a glance</h2>
+    <p class="lead">Probability × severity, coloured by category — rendered live from your scenarios.</p>
+  </div>
+
+<div class="card p-5" style="max-width: 40rem; margin: 0 auto">
+  <div class="grid grid-cols-4 gap-1.5 text-center text-xs">
+    <div></div>
+    <div class="eyebrow">medium</div><div class="eyebrow">high</div><div class="eyebrow" style="color:#c2372c">critical</div>
+    <div class="eyebrow" style="padding-top:.5rem">high</div>
+    <div class="rounded-lg p-2" style="background:#fef3c7">team ×2</div>
+    <div class="rounded-lg p-2 font-bold" style="background:#fee2e2">technical</div>
+    <div class="rounded-lg p-2 font-bold" style="background:#fecaca">dependency</div>
+    <div class="eyebrow" style="padding-top:.5rem">medium</div>
+    <div class="rounded-lg p-2" style="background:#f1f5f9">market</div>
+    <div class="rounded-lg p-2" style="background:#fef3c7">execution</div>
+    <div class="rounded-lg p-2" style="background:#fee2e2">unknown</div>
+    <div class="eyebrow" style="padding-top:.5rem">low</div>
+    <div class="rounded-lg p-2" style="background:#f1f5f9">market</div>
+    <div class="rounded-lg p-2" style="background:#f1f5f9">execution</div>
+    <div class="rounded-lg p-2" style="background:#fef3c7">technical</div>
+  </div>
 </div>
-<h2 class="mt-8 font-serif text-lg font-bold text-boardroom">How it works</h2>
-<ol class="mt-2 list-decimal space-y-1 pl-6 text-sm text-charcoal">
-  <li>Submit project name, description, type, launch date, team size, dependencies, known risks.</li>
-  <li>Read 10 failure scenarios with precedents + warnings, plotted on the risk matrix.</li>
-  <li>Select scenarios, plan mitigations, export the action plan CSV and share the markdown report.</li>
-</ol>
-<div class="mt-6">
-  <Disclaimer />
+
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <p class="eyebrow">How it works</p>
+    <h2 class="section-title">Three steps, no fluff</h2>
+  </div>
+  <div class="grid-3">
+<div class="step reveal">
+  <div class="step-num">01</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Describe the project</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Name, type, launch date, team size, dependencies, known risks.</p>
 </div>
+<div class="step reveal">
+  <div class="step-num">02</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Read the report</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Ten scenarios with precedents and warnings, plotted on the risk matrix.</p>
+</div>
+<div class="step reveal">
+  <div class="step-num">03</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Plan mitigations</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Select scenarios, plan countermeasures, export the action plan.</p>
+</div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="note-band">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <p>Speculative planning aid — not a prediction. Failure scenarios are generated for structured planning discussion; verify assumptions independently.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="cta-band reveal">
+    <h2 class="section-title">Launch day is coming.</h2>
+    <p class="lead" style="margin: 0.8rem auto 1.8rem">Spend ten minutes in the future where it failed.</p>
+    <a href={`${base}/submit`} class="btn btn-accent btn-lg">Run a pre-mortem</a>
+  </div>
+</section>
+
 </BaseLayout>

@@ -4,16 +4,39 @@ export default {
   theme: {
     extend: {
       colors: {
-        boardroom: '#0f172a',
-        charcoal: '#1c2433',
-        riskred: '#dc2626',
-        riskamber: '#d97706',
-        riskblue: '#2563eb',
-      },
+        "boardroom": "#101a2e",
+        "charcoal": "#232f44",
+        "riskred": "#c2372c",
+        "riskamber": "#d97706",
+        "riskblue": "#2563eb"
+},
       fontFamily: {
-        serif: ['Georgia', '"Times New Roman"', 'serif'],
-        sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-      },
+        "display": [
+                "'Source Serif 4'",
+                "Georgia",
+                "serif"
+        ],
+        "body": [
+                "'Inter'",
+                "system-ui",
+                "sans-serif"
+        ],
+        "mono": [
+                "'JetBrains Mono'",
+                "ui-monospace",
+                "monospace"
+        ],
+        "serif": [
+                "'Source Serif 4'",
+                "Georgia",
+                "serif"
+        ],
+        "sans": [
+                "'Inter'",
+                "system-ui",
+                "sans-serif"
+        ]
+},
     },
   },
   plugins: [],

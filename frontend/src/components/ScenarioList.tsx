@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiGet, apiPost } from '../lib/apiClient';
+const BASE = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 
 interface PrecedentRecord {
   project_name?: string;
@@ -91,7 +92,7 @@ export default function ScenarioList({ sid }: { sid: string }) {
       const count = Array.isArray(d) ? d.length : (d?.mitigations?.length ?? selectedIds.length);
       setInfo(`Planned mitigations for ${selectedIds.length} scenario(s) (${count} actions).`);
       if (typeof window !== 'undefined') {
-        window.location.href = `/mitigations?sid=${sid}`;
+        window.location.href = `${BASE}/mitigations?sid=${sid}`;
       }
     } catch (e) {
       setErr(e instanceof Error ? e.message : 'Mitigate failed.');
