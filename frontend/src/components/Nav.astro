@@ -1,0 +1,23 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/submit', label: 'Submit' },
+  { href: '/scenarios', label: 'Scenarios' },
+  { href: '/mitigations', label: 'Mitigations' },
+  { href: '/report', label: 'Report' },
+  { href: '/history', label: 'History' },
+  { href: '/settings', label: 'Settings' },
+];
+---
+<nav class="bg-boardroom">
+  <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+    <a href="/" class="font-serif text-lg font-bold text-white">AI Pre-Mortem Engine</a>
+    <ul class="flex flex-wrap gap-4">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="text-sm text-white/90 hover:text-amber-200 hover:underline">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

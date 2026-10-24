@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Disclaimer from "../components/Disclaimer.astro";
+import MarkdownReport from "../components/MarkdownReport.tsx";
+
+const sid = Astro.url.searchParams.get('sid') ?? '';
+---
+<BaseLayout title="Report — AI Pre-Mortem Engine">
+<h1 class="mb-4 font-serif text-2xl font-bold text-boardroom">Pre-mortem report {sid ? `#${sid}` : ''}</h1>
+<Disclaimer />
+{!sid && (
+  <p class="rounded border border-riskamber/60 bg-amber-50 p-3 text-sm text-boardroom">No session id provided. <a class="underline" href="/submit">Run a pre-mortem</a> or open one from <a class="underline" href="/history">History</a>.</p>
+)}
+{sid && (
+  <>
+    <p class="mb-3 text-xs text-charcoal/70"><a href={`/scenarios?sid=${sid}`} class="text-riskblue underline">Scenarios</a> · <a href={`/mitigations?sid=${sid}`} class="text-riskblue underline">Mitigations</a></p>
+    <div class="rounded border border-boardroom/20 bg-slate-50 p-4">
+      <MarkdownReport sid={sid} client:visible />
+    </div>
+  </>
+)}
+</BaseLayout>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Settings — AI Pre-Mortem Engine">
+<h1 class="mb-4 font-serif text-2xl font-bold text-boardroom">Settings</h1>
+<div class="space-y-4">
+  <div class="rounded border border-boardroom/20 bg-white p-4">
+    <h2 class="text-sm font-bold text-boardroom">Backend</h2>
+    <p class="mt-1 text-xs text-charcoal/70">API base: <span id="base">…</span></p>
+  </div>
+</div>
+<script>
+  import { BASE } from '../lib/apiClient';
+  const base = document.getElementById('base')!;
+  base.textContent = BASE;
+</script>
+</BaseLayout>

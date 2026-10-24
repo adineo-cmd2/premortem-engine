@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Disclaimer from "../components/Disclaimer.astro";
+import RiskMatrix from "../components/RiskMatrix.tsx";
+import ScenarioList from "../components/ScenarioList.tsx";
+
+const sid = Astro.url.searchParams.get('sid') ?? '';
+---
+<BaseLayout title="Scenarios — AI Pre-Mortem Engine">
+<h1 class="mb-4 font-serif text-2xl font-bold text-boardroom">Failure scenarios {sid ? `#${sid}` : ''}</h1>
+<Disclaimer />
+{!sid && (
+  <p class="rounded border border-riskamber/60 bg-amber-50 p-3 text-sm text-boardroom">No session id provided. <a class="underline" href="/submit">Run a pre-mortem</a> or open one from <a class="underline" href="/history">History</a>.</p>
+)}
+{sid && (
+  <>
+    <p class="mb-3 text-xs text-charcoal/70"><a href={`/mitigations?sid=${sid}`} class="text-riskblue underline">Mitigations</a> · <a href={`/report?sid=${sid}`} class="text-riskblue underline">Report</a></p>
+    <div class="mb-6 rounded border border-boardroom/20 bg-white p-4">
+      <h2 class="mb-2 text-sm font-bold text-boardroom">Risk matrix — probability × severity</h2>
+      <RiskMatrix sid={sid} client:visible />
+    </div>
+    <div class="rounded border border-boardroom/20 bg-slate-50 p-4">
+      <ScenarioList sid={sid} client:visible />
+    </div>
+  </>
+)}
+</BaseLayout>
